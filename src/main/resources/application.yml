@@ -1,11 +1,13 @@
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL}
-    username: ${JDBC_DATABASE_USERNAME}
-    password: ${JDBC_DATABASE_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/myap
+    username: postgres
+    password: postgres
   jpa:
     hibernate:
-      dll-auto: create-drop
+      dll-auto: none
+    properties:
+      hibernate.hbm2ddl.auto: create-drop
 
 server:
   port: 8090
