@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url: mysql://localhost:3306/myapp
-    username: root
-    password: root
+    url: jdbc:postgresql://ec2-54-217-214-201.eu-west-1.compute.amazonaws.com:5432/
+      db32rf657dgk8f
+    username: xpfdcicsypmnqb
+    password: 9b2fe7e1f0cda548d385daeb91740a21b9704f903945daacfb17ca4aa2053415
   jpa:
     hibernate:
       dll-auto: create
