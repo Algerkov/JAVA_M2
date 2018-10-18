@@ -4,9 +4,10 @@ spring:
       db32rf657dgk8f
     username: xpfdcicsypmnqb
     password: 9b2fe7e1f0cda548d385daeb91740a21b9704f903945daacfb17ca4aa2053415
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      dll-auto: create
+      dll-auto: create-drop
 
 server:
   port: 8090
