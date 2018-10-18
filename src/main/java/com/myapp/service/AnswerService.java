@@ -1,25 +1,30 @@
 package com.myapp.service;
 
 import com.myapp.entity.Answer;
-import com.myapp.repository.AnswerRepo;
-import com.myapp.repository.AnswerRepoInterface;
+import com.myapp.repository.AnswerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnswerService {
 
-    AnswerRepoInterface answerRepository ;
+    AnswerRepository answerRepository ;
 
-    public AnswerService(AnswerRepoInterface answerRepo){
+    public AnswerService(AnswerRepository answerRepo){
         answerRepository = answerRepo;
     }
 
     public List<Answer> getAll() {
         return answerRepository.findAll();
     }
-    public void create(String answer){
-        answerRepository.save(new Answer(answer));
+
+    public Answer create(Answer answer){
+        return answerRepository.save(answer);
+    }
+
+    public Optional<Answer> findById(Long id) {
+        return answerRepository.findById(id);
     }
 }

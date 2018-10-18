@@ -11,21 +11,30 @@ import javax.persistence.Table;
 public class Answer {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private String answer;
+    private String value;
 
-    protected Answer() {}
+    public Answer(){}
 
-    public Answer(String answer) {
-        this.answer = answer;
+    public Answer(Long id, String value){
+        this.id = id;
+        this.value = value;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Answer[id=%d, answer='%s']",
-                id, answer);
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 }

@@ -5,9 +5,12 @@ spring:
     password: postgres
   jpa:
     hibernate:
-      dll-auto: none
+      dll-auto: create
     properties:
-      hibernate.hbm2ddl.auto: create-drop
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation : true
 
 server:
   port: 8090

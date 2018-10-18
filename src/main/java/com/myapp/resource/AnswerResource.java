@@ -2,14 +2,14 @@ package com.myapp.resource;
 
 import com.myapp.entity.Answer;
 import com.myapp.service.AnswerService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController()
 public class AnswerResource {
@@ -25,7 +25,14 @@ public class AnswerResource {
     }
 
     @PostMapping("/answers")
-    public void create(@RequestBody String answer){
-        answerService.create(answer);
+    public Answer create(@RequestBody Answer answer){
+        return answerService.create(answer);
+    }
+
+    @RequestMapping(method = GET, path = "/answers/{id}")
+    public ResponseEntity<Answer> findById(@PathVariable Long id) {
+        Optional<Answer> answer = answerService.findById(id);
+        return answer.map(response -> ResponseEntity.ok().body(response))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }
