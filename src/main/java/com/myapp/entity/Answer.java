@@ -1,10 +1,6 @@
 package com.myapp.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "answer")
@@ -14,12 +10,20 @@ public class Answer {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String value;
+    @ManyToOne
+    private Question question;
 
     public Answer(){}
 
+    public Answer(Long id, String value, Question question){
+        this.setId(id);
+        this.setValue(value);
+        this.setQuestion(question);
+    }
+
     public Answer(Long id, String value){
-        this.id = id;
-        this.value = value;
+        this.setId(id);
+        this.setValue(value);
     }
 
     public Long getId() {
@@ -36,5 +40,13 @@ public class Answer {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }
