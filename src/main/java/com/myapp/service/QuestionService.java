@@ -20,6 +20,10 @@ public class QuestionService {
         return QuestionRepository.findAll();
     }
 
+    public List<Question> getAllById() {
+        return QuestionRepository.findAllByOrderByIdAsc();
+    }
+
     public Question create(Question Question){
         return QuestionRepository.save(Question);
     }

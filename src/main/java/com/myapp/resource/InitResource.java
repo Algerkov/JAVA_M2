@@ -2,8 +2,10 @@ package com.myapp.resource;
 
 import com.myapp.entity.Answer;
 import com.myapp.entity.Question;
+import com.myapp.entity.Stat;
 import com.myapp.service.AnswerService;
 import com.myapp.service.QuestionService;
+import com.myapp.service.StatService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,18 +19,21 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController()
 public class InitResource {
 
-    public InitResource(AnswerService answerSerice, QuestionService questionService){
+    public InitResource(AnswerService answerSerice, QuestionService questionService, StatService statService){
         this.answerService = answerSerice;
         this.questionService = questionService;
+        this.statService = statService;
     }
     private AnswerService answerService ;
     private QuestionService questionService;
+    private StatService statService;
 
     @RequestMapping(method = GET, path = "/init")
     public ResponseEntity initQuestions() {
 
         List<Answer> allAnswers = new ArrayList<Answer>();
         List<Question> allQuestions = new ArrayList<Question>();
+        List<Stat> allStats = new ArrayList<Stat>();
 
         Answer ans1 = new Answer (null, "OUI");allAnswers.add(ans1);
         Answer ans2 = new Answer(null, "NON");allAnswers.add(ans2);
@@ -46,6 +51,24 @@ public class InitResource {
 
         for (Answer ans : allAnswers){
             answerService.create(ans);
+        }
+
+        Stat stat1 = new Stat(null, 0);allStats.add(stat1);
+        Stat stat2 = new Stat(null, 0);allStats.add(stat2);
+        Stat stat3 = new Stat(null, 0);allStats.add(stat3);
+        Stat stat4 = new Stat(null, 0);allStats.add(stat4);
+        Stat stat5 = new Stat(null, 0);allStats.add(stat5);
+        Stat stat6 = new Stat(null, 0);allStats.add(stat6);
+        Stat stat7 = new Stat(null, 0);allStats.add(stat7);
+        Stat stat8 = new Stat(null, 0);allStats.add(stat8);
+        Stat stat9 = new Stat(null, 0);allStats.add(stat9);
+        Stat stat10 = new Stat(null, 0);allStats.add(stat10);
+        Stat stat11 = new Stat(null, 0);allStats.add(stat11);
+        Stat stat12 = new Stat(null, 0);allStats.add(stat12);
+        Stat stat13 = new Stat(null, 0);allStats.add(stat13);
+
+        for (Stat stat : allStats){
+            statService.create(stat);
         }
 
         List<Answer> list1 = new ArrayList<Answer>();
@@ -79,10 +102,6 @@ public class InitResource {
         Question q5  = new Question("Donner le mot qui résume pour vous cette technologie", list5);allQuestions.add(q5);
 
         for (Question question : allQuestions){
-            System.out.println("question.getValue() = " + question.getValue());
-            for (Answer ans : question.getAnswers()){
-                System.out.println("ans = " + ans.getId() + " " +ans.getValue());
-            }
             questionService.create(question);
         }
 
@@ -108,6 +127,24 @@ public class InitResource {
 
         for (Answer ans : list5){
             ans.setQuestion(q5);
+            answerService.create(ans);
+        }
+
+        ans1.setStat(stat1);
+        ans2.setStat(stat2);
+        ans3.setStat(stat3);
+        ans4.setStat(stat4);
+        ans5.setStat(stat5);
+        ans6.setStat(stat6);
+        ans7.setStat(stat7);
+        ans8.setStat(stat8);
+        ans9.setStat(stat9);
+        ans10.setStat(stat10);
+        ans11.setStat(stat11);
+        ans12.setStat(stat12);
+        ans13.setStat(stat13);
+
+        for (Answer ans : allAnswers){
             answerService.create(ans);
         }
 

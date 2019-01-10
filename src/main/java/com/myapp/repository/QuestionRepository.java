@@ -12,6 +12,8 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     @Override
     List<Question> findAll();
 
+    List<Question> findAllByOrderByIdAsc();
+
     @Override
     <S extends Question> S save(S s);
 

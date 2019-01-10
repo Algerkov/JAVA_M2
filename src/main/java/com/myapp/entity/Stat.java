@@ -9,14 +9,11 @@ public class Stat {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private Answer answer;
     private Integer nbAnswers;
 
     public Stat(){}
-    public Stat(Long id, Answer Answer, Integer nbAnswers){
+    public Stat(Long id, Integer nbAnswers){
         this.setId(id);
-        this.setAnswer(answer);
         this.setNbAnswers(nbAnswers);
     }
 
@@ -26,14 +23,6 @@ public class Stat {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Answer getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
     }
 
     public Integer getNbAnswers() {

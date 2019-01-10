@@ -1,5 +1,7 @@
 package com.myapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class Question {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String value;
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER)
     private List<Answer> answers;
 
     public Question(){}

@@ -1,5 +1,7 @@
 package com.myapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,15 +12,20 @@ public class Answer {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String value;
+    @JsonIgnore
     @ManyToOne
     private Question question;
+    @OneToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="stat_id")
+    private Stat stat;
 
     public Answer(){}
 
-    public Answer(Long id, String value, Question question){
+    public Answer(Long id, String value, Question question, Stat stat){
         this.setId(id);
         this.setValue(value);
         this.setQuestion(question);
+        this.setStat(stat);
     }
 
     public Answer(Long id, String value){
@@ -48,5 +55,13 @@ public class Answer {
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public Stat getStat() {
+        return stat;
+    }
+
+    public void setStat(Stat stat) {
+        this.stat = stat;
     }
 }
