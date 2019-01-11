@@ -148,6 +148,6 @@ public class InitResource {
             answerService.create(ans);
         }
 
-        return ResponseEntity.ok().body("C'est initilisé ");
+        return ResponseEntity.ok().body("C'est initilisé");
     }
 }
