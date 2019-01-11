@@ -3,6 +3,8 @@ package com.myapp.resource;
 import com.myapp.classes.Quizz;
 import com.myapp.entity.Answer;
 import com.myapp.entity.Question;
+import com.myapp.entity.Stat;
+import com.myapp.entity.User;
 import com.myapp.service.AnswerService;
 import com.myapp.service.QuestionService;
 import com.myapp.service.StatService;
@@ -46,5 +48,35 @@ public class QuizzRessource {
     @RequestMapping(method = GET, path = "/presentateur/next")
     public ResponseEntity nextData() {
         return ResponseEntity.ok().body(quizz.getNextStep());
+    }
+
+    @RequestMapping(method = GET, path = "/public/answer/{id}")
+    public ResponseEntity answer(@PathVariable("id") long id) {
+
+        Optional<Answer> ansA = answerService.findById(id);
+        Answer ans = ansA.get();
+        boolean goodQuestion = false;
+        
+        for (Answer anss : quizz.getStep().getQuestion().getAnswers()){
+            if (anss.getId() == ans.getId()){
+                goodQuestion = true;
+            }
+        }
+        
+        if (goodQuestion) {
+            Stat stat = ans.getStat();
+            Integer nbAnswer = stat.getNbAnswers();
+            stat.setNbAnswers(nbAnswer + 1);
+            statService.create(stat);
+            return ResponseEntity.ok().body("Vote enregistré");
+        }
+        else {
+            return ResponseEntity.ok().body("Erreur: question passée");
+        }
+    }
+
+    @PostMapping("/newsletter")
+    public User create(@RequestBody User user){
+        return userService.create(user);
     }
 }
