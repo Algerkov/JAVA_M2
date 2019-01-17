@@ -5,9 +5,11 @@
 
 ######################################### DEPLOYEMENT #####################################
 
-- Check that no application is running on 8080 port 
+- Check that no application is running on 8090 port 
 
-- Create a MySQL or MariaDB Database on default port : 3306 and call it "myapp"
+- Create a Postgres Database and call it "myap"
+
+- Complete the project application.yml with your db configuration (host, user, password, port)
 
 - Build the jar with : mvn clean package
 
